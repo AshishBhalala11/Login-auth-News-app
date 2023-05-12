@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'news-feed',
@@ -6,6 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./news-feed.component.css']
 })
 
-export class NewsfeedComponent {
+export class NewsFeedComponent{
 
+  @Input() newsArray: any[] =[];
+
+  constructor() {}
 }

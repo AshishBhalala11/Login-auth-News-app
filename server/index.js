@@ -6,8 +6,9 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
 const AuthRoute = require('./src/routes/auth');
-const { port, databaseLink } = require('./src/config/envVars');
+const NewsRoute = require('./src/routes/news');
 const authenticate = require('./src/middleware/authenticate');
+const { port, databaseLink } = require('./src/config/envVars');
 
 const app = express();
 
@@ -27,7 +28,12 @@ app.use(cookieParser());
 // using authRoute router for /api/auth/* api endpoints
 app.use('/api/auth', AuthRoute);
 
+//  using NewsRoute for /api/news/* api endpoints
+app.use('/api/news', authenticate, NewsRoute);
+
+
 // Example to show use of middleware for authentication purpose to access protected APIs which can only be seen by authorised users.
+// not using /api/users for anything
 app.get('/api/users', authenticate, (req, res, next) => {
   res.status(200).json({
     message: 'User successfully authenticated to see users page!'

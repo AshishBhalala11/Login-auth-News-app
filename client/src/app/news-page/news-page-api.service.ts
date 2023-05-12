@@ -1,10 +1,25 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable()
 
 export class NewsPageApiService {
 
-  apiUrl: string = 'https://newsapi.org/v2/'
-  apiKey: string = environment.newsApiKeyl;
+  newsUrl: string = 'http://localhost:3000/api/news/feed';
+  authToken = localStorage.getItem('token');
+
+
+  constructor(
+    private http: HttpClient,
+  ) { }
+
+  getNewsFeed(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.authToken}`,
+    });
+
+    return this.http.get(this.newsUrl, {headers});
+  }
+
 }

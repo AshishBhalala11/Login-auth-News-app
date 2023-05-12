@@ -11,4 +11,5 @@ module.exports = {
     databaseLink: process.env.DATABASE_LINK,
     accessTokenKey: process.env.ACCESS_TOKEN_KEY,
     tokenExpiresTime: process.env.TOKEN_EXPIRES_IN,
+    newsApiKey: process.env.NEWS_API_KEY,
 };

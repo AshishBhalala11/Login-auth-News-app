@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     const url = this.location.path().slice(1);
-    this.showLoginPage = url === 'login';
+    this.showLoginPage = (url.includes('login'));
   }
 
   loginForm: FormGroup = this.fb.group({
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', response.token);
           this.errorMessage = '';
           setTimeout(() => {
-            this.router.navigate(['/news-feed']);
+            this.router.navigate(['/news-page']);
             this.loading = false;
           }, 1000)
         },

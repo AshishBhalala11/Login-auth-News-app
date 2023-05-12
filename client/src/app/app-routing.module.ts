@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
-import { NewsfeedComponent } from './news-page/news-feed/news-feed.component';
+import { NewsPageComponent } from './news-page/news-page.component';
 
 const routes: Routes = [{
   component: LoginComponent,
@@ -12,8 +12,8 @@ const routes: Routes = [{
   path: 'register'
 },
 {
-  component: NewsfeedComponent,
-  path: 'news-feed'
+  component: NewsPageComponent,
+  path: 'news-page'
 },
 {
   path: '**',

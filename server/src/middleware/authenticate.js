@@ -13,7 +13,7 @@ const authenticate = (req, res, next) => {
     }
     catch(error) {
         res.status(401).json({
-            error: 'User Authentication Failed! Invalid access token!',
+            error: 'User Authentication Failed!',
         });
     }
 }

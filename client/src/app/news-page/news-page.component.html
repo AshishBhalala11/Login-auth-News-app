@@ -1,0 +1,28 @@
+<div class="fixed top-0 left-0 w-screen h-screen flex items-center justify-center" *ngIf="loading">
+  <div class="animate-spin rounded-full h-20 w-20 border-t-8 border-b-8 border-sky-800"></div>
+</div>
+
+<div class="text-2xl md:text-3xl font-bold fixed top-0 left-0 w-screen h-screen flex flex-col items-center justify-center" *ngIf="error">
+  <div class="text-red-800">{{errorMsg}}</div>
+  <div class="mt-4">
+    <span class="text-sky-700 underline underline-offset-2 cursor-pointer"
+      routerLink="/login">Login</span>
+    <span class="ml-2">to see this page</span>
+  </div>
+</div>
+
+<div class="mx-4 md:mx-20 my-8 relative">
+
+  <div class="flex justify-between">
+    <div class="font-bold">
+      <span class="p-2 bg-gray-900 text-white rounded cursor-pointer">News</span>
+      <span class="ml-2 cursor-pointer">Portal</span>
+    </div>
+    <div>
+      <img class="cursor-pointer" src="../../../assets/logout_icon.png" (click)="onLogout()"/>
+    </div>
+
+  </div>
+
+  <news-feed [newsArray]="newsArray"></news-feed>
+</div>
