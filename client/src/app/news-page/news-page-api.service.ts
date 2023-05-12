@@ -14,6 +14,7 @@ export class NewsPageApiService {
     private http: HttpClient,
   ) { }
 
+  // function to load news from local node server and with authorizarion
   getNewsFeed(): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${this.authToken}`,

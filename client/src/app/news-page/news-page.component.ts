@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NewsPageApiService } from './news-page-api.service';
+import { AuthApiService } from '../auth/auth-api.service';
 
 @Component({
   selector: 'news-page',
@@ -10,14 +11,15 @@ import { NewsPageApiService } from './news-page-api.service';
 
 export class NewsPageComponent implements OnInit {
 
-  basicArray: any[] = [];
-  newsArray: any[] = [];
+  basicArray: any[] = []; // array to add repeating data while scrolling
+  newsArray: any[] = []; // array to loop and repeat the data while scrolling
   loading:boolean = false;
   error: boolean = false;
   errorMsg: string = '';
 
   constructor(
     private router: Router,
+    private authApiService: AuthApiService,
     private newsPageApiService: NewsPageApiService,
   ) { }
 
@@ -25,6 +27,8 @@ export class NewsPageComponent implements OnInit {
     this.loading = true;
     this.error = false;
     this.errorMsg = '';
+
+    // getting the new feed data initially
     this.newsPageApiService.getNewsFeed().subscribe({
       next: (response) => {
         this.basicArray = response.articles;
@@ -39,6 +43,7 @@ export class NewsPageComponent implements OnInit {
     })
   }
 
+  // infinite scrolling functionality
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
     const windowHeight = window.innerHeight;
@@ -46,14 +51,19 @@ export class NewsPageComponent implements OnInit {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
 
     // Check if the user has reached the bottom of the window
-    if (scrollTop + windowHeight >= documentHeight - 48) {
+    if (scrollTop + windowHeight >= documentHeight - 48) { // subtracting 48 px because of the footer calculation when scrolling
       // Repeat the newsArray
       this.newsArray = [...this.newsArray, ...this.basicArray];
     }
   }
 
+  // logout function
   onLogout() {
-    localStorage.removeItem('token');
-    this.router.navigate(['/login']);
+    this.authApiService.onLogout().subscribe({
+      next: (response) => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      }
+    })
   }
 }

@@ -6,12 +6,12 @@
   <div class="text-red-800">{{errorMsg}}</div>
   <div class="mt-4">
     <span class="text-sky-700 underline underline-offset-2 cursor-pointer"
-      routerLink="/login">Login</span>
+      routerLink="/login" [queryParams]="{ refresh: true }">Login</span>
     <span class="ml-2">to see this page</span>
   </div>
 </div>
 
-<div class="mx-4 md:mx-20 my-8 relative">
+<div class="mx-4 md:mx-20 my-8 relative" *ngIf="!loading && !error">
 
   <div class="flex justify-between">
     <div class="font-bold">

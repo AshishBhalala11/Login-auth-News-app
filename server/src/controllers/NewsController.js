@@ -3,6 +3,7 @@ const { newsApiKey } = require('../config/envVars');
 const NewsAPI = require('newsapi');
 const newsapi = new NewsAPI(newsApiKey);
 
+// newsFeed function to get news data from newsapi library and send to client
 const newsFeed = (req, res, next) => {
     newsapi.v2.topHeadlines({
         language: 'en',
