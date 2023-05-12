@@ -1,0 +1,63 @@
+<!-- <div class="flex flex-row">
+  <img class="hidden md:block h-screen w-1/2" src="../assets/auth_page.png" alt="Not able to load image at this time"/>
+  <div class="flex flex-col justify-center content-center">
+    <div>welcome back</div>
+  </div>
+</div> -->
+
+<div class="bg-white">
+  <div class="flex justify-center h-screen">
+    <div class="lg:flex w-1/2 hidden bg-gray-500 bg-no-repeat bg-cover relative items-center"
+          style="background-image: url('assets/auth_page.png'); background-position: top;">
+    </div>
+    <ng-container [formGroup]="loginForm">
+      <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-1/2 relative">
+        <div class="flex-1">
+          <div class="text-left">
+            <div class="mt-8">
+              <span *ngIf="showLoginPage">Welcome back</span>
+              <span *ngIf="!showLoginPage">Welcome</span>
+              <h2 class="text-2xl md:text-3xl font-bold text-left">
+                <span class="whitespace-nowrap" *ngIf="showLoginPage">Login to your account</span>
+                <span class="whitespace-nowrap" *ngIf="!showLoginPage">Signup to your account</span>
+              </h2>
+            </div>
+            <div class="mt-6 flex flex-col">
+              <label class="text-gray-700" for="email">Email</label>
+              <input class="mt-2 bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                required id="email" formControlName="email" name="email" type="text"/>
+
+              <label class="text-gray-700 mt-2" for="password">Password</label>
+              <input class="mt-2 bg-gray-50 text-gray-700 focus:outline-none focus:shadow-outline border border-gray-300 rounded py-2 px-4 block w-full appearance-none"
+                required id="password" formControlName="password" name="password" type="password" />
+            </div>
+            <div class="flex justify-between mt-6">
+              <div class="flex items-center">
+                <input type="radio" id="remember_me" />
+                <label class="ml-2" for="remember_me">Remember me</label>
+              </div>
+              <div class="text-sky-600 whitespace-nowrap">Forget password?</div>
+            </div>
+            <button class="mt-6 disabled:opacity-50 disabled:pointer-events-none flex justify-center items-center bg-sky-600 font-medium tracking-wider text-white h-[44px] py-2 px-4 w-full text-s rounded hover:bg-sky-700"
+              [disabled]="!loginForm.valid || loading" (click)="onLogin()">
+              <span class="animate-spin rounded-full h-4 w-4 border-t-2 border-b-2 border-white mr-2" *ngIf="loading"></span>
+              <span *ngIf="showLoginPage">Login now</span>
+              <span *ngIf="!showLoginPage">Signup</span>
+            </button>
+            <div class="text-lg text-green-800 text-center mt-2">{{ successMessage }}</div>
+            <div class="text-lg text-red-500 text-center mt-2">{{ errorMessage }}</div>
+          </div>
+        </div>
+        <div class="absolute bottom-0 w-11/12 max-w-full m-auto mt-2 mb-4 text-center">
+            <span class="whitespace-nowrap" *ngIf="showLoginPage">Dont have an account? </span>
+            <span class="text-sky-600 whitespace-nowrap cursor-pointer"
+              routerLink="/register" *ngIf="showLoginPage">Join free today</span>
+
+            <span class="whitespace-nowrap" *ngIf="!showLoginPage">Have an account? </span>
+            <span class="text-sky-600 whitespace-nowrap cursor-pointer"
+              routerLink="/login" *ngIf="!showLoginPage">Login Now</span>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

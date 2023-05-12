@@ -14,7 +14,7 @@ const register = (req, res, next) => {
     .then(user => {
         if (user) {
             res.status(403).json({
-                error: 'user with this email already exist!'
+                error: 'User with this email already exist!'
             })
         } else {
             // if user doesn't already exist then hashing the password to store in the database
@@ -69,7 +69,8 @@ const login = (req, res, next) => {
 
                     res.cookie('token', token, {
                         httpOnly: true,
-                        maxAge: 60 * 60 * 1000, // 1 hour
+                        maxAge: 60 * 60 * 1000, // 1 hour,
+                        path: '/',
                     });
 
                     res.status(200).json({

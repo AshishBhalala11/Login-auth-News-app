@@ -2,6 +2,8 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
 
 const AuthRoute = require('./src/routes/auth');
 const { port, databaseLink } = require('./src/config/envVars');
@@ -19,6 +21,8 @@ mongoose.connect(databaseLink)
 app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
+app.use(cors());
+app.use(cookieParser());
 
 // using authRoute router for /api/auth/* api endpoints
 app.use('/api/auth', AuthRoute);
