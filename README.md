@@ -38,7 +38,18 @@
 ### Following are the URLs for Login, Registering the new user and news
 - Login : http://localhost:4200/login
 - Register : http://localhost:4200/register
-- News page : http://localhost:4200/news-page
+- News Api : http://localhost:4200/news-page
+<br><br>
 
-- User can only see the news page in browser if user is logged in via UI.
-- In case of postman user needs to included correct authorization token in headers while making the api call to access news page api.
+# APIs (required data for APIs)
+
+### Login (Post Api) : http://localhost:4200/login
+- body= {email, password}
+
+### Register (Post Api) : http://localhost:4200/register
+- body= {email, password}
+
+### News Api (Get Api) : http://localhost:4200/news-page
+- headers= {Authorization: Bearer token}
+- User can only see the news page in browser if user is logged in via UI as it's restricted page for only logged in user.
+- For making API call from postman user needs to include correct authorization token in headers to access news api.
